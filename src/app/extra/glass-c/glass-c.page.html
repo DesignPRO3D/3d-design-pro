@@ -1,0 +1,151 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button [routerLink]="['/extra']">
+				<ion-icon slot="start" name="arrow-round-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Glass Balustrade Frameless</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<p class="text-center" *ngIf="btnShowDwg">
+		<ion-chip (click)="mainDWG = true; btnShowDwg = false">
+			<ion-avatar>
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FextraBig%2Fh3-min.PNG?alt=media&token=b7a0d279-4dee-486e-af4f-957a2effecc0"
+					alt="Calculator Glass Balustrade Frameless"
+				/>
+			</ion-avatar>
+			<ion-label>Show Drawing</ion-label>
+		</ion-chip>
+	</p>
+
+	<div class="imgBox" *ngIf="mainDWG">
+		<ion-fab
+			vertical="top"
+			horizontal="end"
+			slot="fixed"
+			(click)="mainDWG = false; btnShowDwg = true"
+		>
+			<ion-fab-button size="small" translucent color="danger">
+				<ion-icon name="close"></ion-icon>
+			</ion-fab-button>
+		</ion-fab>
+		<img
+			src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FextraBig%2Fh3-min.PNG?alt=media&token=b7a0d279-4dee-486e-af4f-957a2effecc0"
+			alt="Calculator Glass Balustrade Frameless"
+			class="mh-400"
+		/>
+	</div>
+
+	<ion-grid>
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right>
+					<ion-text color="medium"
+						><ion-label text-right>Length: </ion-label></ion-text
+					>
+				</div>
+			</ion-col>
+			<ion-col size="4">
+				<div text-left>
+					<ion-input
+						[(ngModel)]="model._sectionL"
+						type="number"
+						(keyup)="calculateData()"
+						max="100000"
+						#n1
+						(ionChange)="
+							calculateInputChange(n1.value, n2.value, n3.value, n4.value)
+						"
+					></ion-input>
+				</div>
+			</ion-col>
+		</ion-row>
+
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right>
+					<ion-text color="medium"
+						><ion-label text-right>D: </ion-label></ion-text
+					>
+				</div>
+			</ion-col>
+			<ion-col size="4">
+				<div text-left>
+					<ion-input
+						[(ngModel)]="model._gapA"
+						type="number"
+						(keyup)="calculateData()"
+						max="10000"
+						#n2
+						(ionChange)="
+							calculateInputChange(n1.value, n2.value, n3.value, n4.value)
+						"
+					></ion-input>
+				</div>
+			</ion-col>
+		</ion-row>
+
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right>
+					<ion-text color="medium"
+						><ion-label text-right>Gap: </ion-label></ion-text
+					>
+				</div>
+			</ion-col>
+			<ion-col size="4">
+				<div text-left>
+					<ion-input
+						[(ngModel)]="model._gapB"
+						type="number"
+						(keyup)="calculateData()"
+						max="10000"
+						#n3
+						(ionChange)="
+							calculateInputChange(n1.value, n2.value, n3.value, n4.value)
+						"
+					></ion-input>
+				</div>
+			</ion-col>
+		</ion-row>
+
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right>
+					<ion-text color="medium"
+						><ion-label text-right>Glass Panels Number: </ion-label></ion-text
+					>
+				</div>
+			</ion-col>
+			<ion-col size="4">
+				<div text-left>
+					<ion-input
+						[(ngModel)]="model._panelsNum"
+						type="number"
+						(keyup)="calculateData()"
+						max="1000"
+						#n4
+						(ionChange)="
+							calculateInputChange(n1.value, n2.value, n3.value, n4.value)
+						"
+					></ion-input>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-grid>
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right><ion-text color="medium">Glass Width:</ion-text></div>
+			</ion-col>
+			<ion-col size="4" *ngIf="model._glassWidth > 0">
+				<div text-left class="result">{{ model._glassWidth }}</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

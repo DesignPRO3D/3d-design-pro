@@ -374,12 +374,12 @@ export class LoftConversionModel {
 
 export class TwoKiteModel {
     constructor(
-        public _A: number,
-        public _width: number,
-        public _D: number,
-        public _gK: number,
-        public _rise?: number,
-        public _2RG?: number
+        public _A: any,
+        public _width: any,
+        public _D: any,
+        public _gK: any,
+        public _rise?: any,
+        public _2RG?: any
     ){}
 
     calculateData() {
@@ -833,22 +833,22 @@ export class SpiralStairModel {
 export class PatternModel {
     constructor(
         public _length: number,
-        public _width: number,
-        public _a: number,
-        public _d1: number,
-        public _d2: number,
-        public _d3: number,
-        public _d4: number,
-        public _cutNumH: number,
-        public _cutNumV: number,
-        public _G1: number,
-        public _G2: number,
-        public _C1: number,
-        public _C2: number,
-        public _type: boolean,
-        public _string: string,
-        public _startPointsA: any[],
-        public _startPointsB: any[],
+        public _width?: number,
+        public _a?: number,
+        public _d1?: number,
+        public _d2?: number,
+        public _d3?: number,
+        public _d4?: number,
+        public _cutNumH?: number,
+        public _cutNumV?: number,
+        public _G1?: number,
+        public _G2?: number,
+        public _C1?: number,
+        public _C2?: number,
+        public _type?: boolean,
+        public _string?: string,
+        public _startPointsA?: any[],
+        public _startPointsB?: any[],
     ){}
 
     calculateData() {

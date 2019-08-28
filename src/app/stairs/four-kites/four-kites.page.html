@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/stairs']">
+        <ion-icon slot="start" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Stairs Four Kite Winders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <p class="text-center" *ngIf="btnShowDwg">
+      <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+        <ion-avatar>
+          <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fk4-min.PNG?alt=media&token=5a3e9265-00a3-450d-9aa9-c47f63a9df76" alt="Stairs four kite winders" />
+        </ion-avatar>
+        <ion-label>Show Drawing</ion-label>
+      </ion-chip>
+    </p>
+  
+    <div class="imgBox" *ngIf="stairDWG"> 
+      <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+        <ion-fab-button  size="small" translucent color="danger">
+          <ion-icon name="close"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fk4-min.PNG?alt=media&token=5a3e9265-00a3-450d-9aa9-c47f63a9df76" alt="Stairs four kite winders" />
+    </div>
+  
+    <ion-grid>
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium"><ion-label text-right>C: </ion-label></ion-text></div>
+        </ion-col>
+        <ion-col size="5">
+          <div text-left><ion-input [(ngModel)]="stair._C" type="number" (keyup)="calculateStairData()" autofocus 
+            clear-input max="10000" #num1 (ionChange)="calculateInputChange(num1.value, num2.value)"
+          ></ion-input></div>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium"><ion-label text-right>Width: </ion-label></ion-text></div>
+        </ion-col>
+        <ion-col size="5">
+          <div text-left><ion-input [(ngModel)]="stair._width" type="number" (keyup)="calculateStairData()" autofocus 
+            clear-input max="10000" #num2 (ionChange)="calculateInputChange(num1.value, num2.value)"
+          ></ion-input></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-grid>
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">gK(kite going):</ion-text></div>
+        </ion-col>
+        <ion-col size="5">
+          <div text-left class="result">{{stair._gK}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">D:</ion-text></div>
+        </ion-col>
+        <ion-col size="5">
+          <div text-left class="result">{{stair._D}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">d1:</ion-text></div>
+        </ion-col>
+        <ion-col size="5">
+          <div text-left class="result">{{stair._d1}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">d2:</ion-text></div>
+        </ion-col>
+        <ion-col size="5">
+          <div text-left class="result">{{stair._d2}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">A:</ion-text></div>
+        </ion-col>
+        <ion-col size="5">
+          <div text-left class="result">{{stair._A}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">B:</ion-text></div>
+        </ion-col>
+        <ion-col size="5">
+          <div text-left class="result">{{stair._B}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-card>
+      <ion-card-header style="padding-bottom: 0px;">
+        <ion-card-title color="success">4 Kite Winders</ion-card-title>
+        <ion-card-subtitle>The following rules must be met:</ion-card-subtitle>
+      </ion-card-header>
+      
+      <ion-card-content style="padding-top: 0px;">
+        <ul>
+          <li>The winder treads must all be equal to or greater than the straight treads</li>
+          <li>Tread width at the narrow end should be 50mm minimum(d1 and d2)</li>
+        </ul>
+        To measure the individual going of the winder treads, 
+        this is done by measuring the arc around the tread which is 
+        created from the centre of the lower flight to the centre of the upper flight.
+      </ion-card-content>
+    </ion-card>
+  
+  </ion-content>

@@ -1,9 +1,209 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>panelBarHoop</ion-title>
-  </ion-toolbar>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button [routerLink]="['/railings']">
+				<ion-icon slot="start" name="arrow-round-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Railing panel - bar type A and B</ion-title>
+	</ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content> 
+  <div [ngSwitch]="model._page">
 
-</ion-content>
+    <div *ngSwitchCase="'one'">
+        
+      <p style="text-align: center;" *ngIf="btnShowDwg">
+        <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2F2-min.png?alt=media&token=ceae84c8-8501-4055-baac-5a8f650741e8" alt="Railing panel pattern hoop - vertical bar">
+          </ion-avatar>
+          <ion-label>Show Drawing</ion-label>
+        </ion-chip>
+      </p>
+                
+          <div class="imgBox" *ngIf="stairDWG"> 
+            <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+                <ion-fab-button  size="small" translucent color="danger">
+                <ion-icon name="close"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2F2-min.png?alt=media&token=ceae84c8-8501-4055-baac-5a8f650741e8" alt="Railing panel pattern hoop - vertical bar" style="max-height: 270px;"/>
+          </div>
+        
+        </div>
+        
+        <div *ngSwitchCase="'two'">
+        
+          <p style="text-align: center;" *ngIf="btnShowDwg2">
+            <ion-chip (click)="stairDWG2 = true; btnShowDwg2 = false;">
+              <ion-avatar>
+                <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FPH2-min.PNG?alt=media&token=32727582-55e1-4a0b-89af-c18b7a695438" alt="Railing panel pattern hoop - vertical bar">
+              </ion-avatar>
+              <ion-label>Show Drawing</ion-label>
+            </ion-chip>
+          </p>
+                  
+          <div class="imgBox" *ngIf="stairDWG2"> 
+            <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG2 = false; btnShowDwg2 = true;">
+                <ion-fab-button  size="small" translucent color="danger">
+                <ion-icon name="close"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FPH2-min.PNG?alt=media&token=32727582-55e1-4a0b-89af-c18b7a695438" alt="Railing panel pattern hoop - vertical bar" style="max-height: 270px;"/>
+          </div>
+          
+        </div>
+        
+        <div *ngSwitchCase="'three'">
+        
+          <p style="text-align: center;" *ngIf="btnShowDwg3">
+            <ion-chip (click)="stairDWG3 = true; btnShowDwg3 = false;">
+              <ion-avatar>
+                <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FPH3-min.PNG?alt=media&token=1d2c99b3-cb6f-4045-8573-f4d1e268af37" alt="Railing panel pattern hoop - vertical bar">
+              </ion-avatar>
+              <ion-label>Show Drawing</ion-label>
+            </ion-chip>
+          </p>
+                    
+          <div class="imgBox" *ngIf="stairDWG3"> 
+            <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG3 = false; btnShowDwg3 = true;">
+                <ion-fab-button  size="small" translucent color="danger">
+                <ion-icon name="close"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FPH3-min.PNG?alt=media&token=1d2c99b3-cb6f-4045-8573-f4d1e268af37" alt="Railing panel pattern hoop - vertical bar" style="max-height: 270spx;"/>
+          </div>
+            
+        </div>
+        
+      </div>
+    
+    
+    
+      <ion-grid>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Length: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._length" type="number" (keyup)="calculateData()" max="10000" #n1 
+        (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Bar Diameter: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._barDiam" type="number" (keyup)="calculateData()" max="10000" #n2 
+          (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Hoop Diameter: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._hoopDiam" type="number" (keyup)="calculateData()" max="10000" #n3 
+            (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center [hidden]="model._type !== 1">
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Bar Number: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._barsNum" type="number" (keyup)="calculateData()" max="10000" #n4 
+            (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center [hidden]="model._type !== 2">
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Bar Number: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._barsNum2" type="number" (keyup)="calculateData()" max="10000" #n5 
+            (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center [hidden]="model._type !== 3">
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Bar Number: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._barsNum3" type="number" (keyup)="calculateData()" max="10000" #n6 
+            (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+      </ion-grid>
+    
+      <ion-grid>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Hoops Number:</ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left class="result" *ngIf="model._gap > 0">{{model._hoopsNum}}</div>
+          </ion-col>
+        </ion-row>
+      
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Gap:</ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left class="result" *ngIf="model._gap > 0">{{model._gap}}</div>
+          </ion-col>
+        </ion-row>
+      
+      </ion-grid>
+    
+      <ion-card *ngIf="model._gap > 0">
+        <ion-card-header class="startPointsHeader">
+          <ion-card-title>Start Points</ion-card-title>
+        </ion-card-header>
+            
+        <ion-grid no-padding>
+      
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col size-12 size-sm-6 size-md-1>
+              <ion-list>
+                <ion-item *ngFor="let s of model?._startPoints; let i = index" [color]="i % 2 ? 'medium' : 'light'">
+                  S{{i + 1}}: <strong style="margin-left: 1em;">{{s}}</strong>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+      
+        </ion-grid>
+      </ion-card>
+    
+    </ion-content>
+    
+    <ion-footer>
+      <ion-toolbar color="primary">
+        <ion-segment [(ngModel)]="model._page">
+          <ion-segment-button value="one" (click)="chosePanelA(1)">Pattern A</ion-segment-button>
+          <ion-segment-button value="two" (click)="chosePanelA(2)">Pattern B</ion-segment-button>
+          <ion-segment-button value="three" (click)="chosePanelA(3)">Pattern C</ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+    </ion-footer>

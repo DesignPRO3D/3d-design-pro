@@ -1,0 +1,94 @@
+<ion-card>
+    <ion-card-title>Add New Stair</ion-card-title>
+    <ion-card-content>  
+      
+      <ion-grid>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="7">
+            <div text-right><ion-text color="medium"><ion-label text-right>Stair name: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left>
+              <ion-input  type="text" #name autofocus></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="7">
+            <div text-right><ion-text color="medium"><ion-label text-right>Tread minimum rise: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left>
+              <ion-input  type="number" #riseMin clear-input max="100000"></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="7">
+            <div text-right><ion-text color="medium"><ion-label text-right>Tread maximum rise: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left>
+              <ion-input  type="number" #riseMax clear-input max="100000"></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="7">
+            <div text-right><ion-text color="medium"><ion-label text-right>Tread minimum going: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left>
+              <ion-input  type="number" #goingMin clear-input max="100000"></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="7">
+            <div text-right><ion-text color="medium"><ion-label text-right>Tread maximum going: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left>
+              <ion-input  type="number" #goingMax clear-input max="100000"></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="7">
+            <div text-right><ion-text color="medium"><ion-label text-right>Obstacle gap: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left>
+              <ion-input  type="number" #obstacleGap clear-input max="100000"></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="7">
+            <div text-right><ion-text color="medium"><ion-label text-right>Pitch: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left>
+              <ion-input  type="number" #pitch clear-input max="100000"></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+  
+      </ion-grid>
+  
+      <p style="text-align: center;">
+          <ion-button color="secondary" (click)="addStairAction(name.value, riseMin.value, riseMax.value, goingMin.value, goingMax.value, obstacleGap.value, pitch.value)">Save Stair</ion-button>
+          <ion-button color="primary" (click)="cancel()">Cancel</ion-button>
+      </p>
+      
+  
+    </ion-card-content>
+  </ion-card>  
+  

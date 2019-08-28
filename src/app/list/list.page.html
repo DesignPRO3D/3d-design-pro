@@ -1,32 +1,232 @@
 <ion-header>
-	<ion-toolbar>
+	<ion-toolbar color="primary">
 		<ion-buttons slot="start">
 			<ion-menu-button></ion-menu-button>
 		</ion-buttons>
 		<ion-title>
-			List
+			Stair Calculator & Stair Building Regulations UK
 		</ion-title>
 	</ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 	<ion-list>
-		<ion-item *ngFor="let item of items">
-			<ion-icon [name]="item.icon" slot="start"></ion-icon>
-			{{ item.title }}
-			<div class="item-note" slot="end">
-				{{ item.note }}
-			</div>
+		<ion-list-header color="medium">
+			<ion-label>Calculations 1</ion-label>
+		</ion-list-header>
+
+		<ion-item routerLink="stepness">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F1-min.png?alt=media&token=36d5312a-8870-4c62-88a8-4ae00ddbc4b7"
+					alt="Stepness of Stairs - Rise & Going"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Stepness of Stairs - Rise & Going</h2>
+				<p>
+					Calculate tread rise, going and stair pitch.
+				</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="headroom">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F2-min.png?alt=media&token=0075cc20-fcf9-4072-968c-5c6109338896"
+					alt="By uk stair regulations minimum headrom for stairs is 2 metres"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Headroom for Stairs</h2>
+				<p>
+					Calculate stair top and bottom headroom.
+				</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="headroom-reduced">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F3-min.png?alt=media&token=dbfaf42e-eb9e-4206-b32e-1f7fd807ac4d"
+					alt="Reduced headroom for loft conversions"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Reduced Headroom for Loft Conversions</h2>
+				<p>
+					Calculate reduced headroom for loft conversions.
+				</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="four-kites">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F4-min.png?alt=media&token=edb832af-b65a-432e-9f0d-050b7627450b"
+					alt="A stair with straight treads and 4 kite winders"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Stair 4 Kite Winders</h2>
+				<p>A stair with straight treads and 4 kite winders.</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="three-kites">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F5-min.png?alt=media&token=67bb3111-ed76-4487-bbe2-d1c79312e333"
+					alt="A stair with straight treads and 3 kite winders"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Stair 3 Kite Winders</h2>
+				<p>A stair with straight treads and 3 kite winders.</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="two-kites">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F6-min.png?alt=media&token=38446628-baf4-4d80-97ce-51ac71f41623"
+					alt="A stair with straight treads and 2 kite winders"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Stair 2 Kite Winders</h2>
+				<p>A stair with straight treads and 2 kite winders.</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="tapered">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F7-min.png?alt=media&token=69bd15e2-f463-4e7a-abf0-02003e253e45"
+					alt="Stairs with tappered treads width less than 1 metre"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Special Stairs - Tapered Treads 1</h2>
+				<p>Width of the stair is less than 1m.</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="tapered-w">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F8-min.png?alt=media&token=89009cad-7407-403d-b2d7-2da96ece48a8"
+					alt="Stairs with tappered treads width more than 1 metre"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Special Stairs - Tapered Treads 2</h2>
+				<p>Width of the stair is more than 1m.</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="landing">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F9-min.png?alt=media&token=0d751984-29cd-4e59-9d33-c59b1b549130"
+					alt="Stair landing has to be at least stair width"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Landings for stairs</h2>
+				<p>At least stair width.</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="balustrade">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F10-min.png?alt=media&token=e094f26c-7b0d-4c88-8961-a909648c778a"
+					alt="Stair Handrails & Balustrades"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Stair Handrails & Balustrades</h2>
+				<p>
+					Calculations for gap between balusters, length of balusters and
+					handrails length.
+				</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
 		</ion-item>
 	</ion-list>
 
-	<img
-		src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-small%2F1s-min.png?alt=media&token=39759ac7-407f-419b-b3fe-d94005e03df3"
-		alt="balustrade"
-	/>
-	<!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+	<ion-list> 
+		<ion-list-header color="medium">
+			<ion-label>Calculations 2</ion-label>
+		</ion-list-header>
+
+		<ion-item routerLink="differentFinishFloors">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F11-min.png?alt=media&token=2eab85ed-2fd4-4cc4-b273-e5020ea6f66e"
+					alt="Stair with different finish floors"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Stair Different Finish Floor</h2>
+				<p>Calculate risers for different thickness of finish floor</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="going-rise">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F12-min.png?alt=media&token=7c895955-af28-4987-8207-ac51a4e8d22f"
+					alt="Stair check tread rise and going"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Stair - Check Tread Rise and Going</h2>
+				<p>We have angle and pitch line length to calculate rise and going.</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="spiral">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F13-min.png?alt=media&token=b1a08ba7-e73b-457c-bc5a-45db6885cc0a"
+					alt="Spiral Stair Calculator"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Spiral Stairs</h2>
+				<p>
+					Calculate handrail bending radius, length. Circumference and angle for
+					balustrade.
+				</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="tread-pattern">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F14-min.png?alt=media&token=864fd694-22b7-47a3-aef6-5cae9b53fcd3"
+					alt="Tread pattern calculator"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Pattern Calculator</h2>
+				<p>For treads and for landing plates.</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+	</ion-list>
 </ion-content>

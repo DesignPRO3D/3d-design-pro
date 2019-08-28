@@ -1,4 +1,43 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+.designPro {
+	position: fixed;
+	bottom: 0.5rem;
+	right: 0.7rem;
+	height: 7rem;
+	width: 7rem;
+	z-index: 1;
+}
+
+.slide-img {
+	display: block;
+	margin: 5px auto 5px auto;
+	border-radius: 15px;
+	border: 1px solid steelblue;
+}
+
+h2,
+h3,
+p {
+	padding: 0;
+	margin: 0;
+}
+
+p {
+	margin: 0.75rem;
+	line-height: 1.2;
+}
+
+h2 {
+	margin: 0.75rem;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: steelblue;
+}
+
+h3 {
+	color: #333;
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin: 0.75rem;
+	padding: 0.5rem;
+	background-color: rgb(253, 255, 118);
 }

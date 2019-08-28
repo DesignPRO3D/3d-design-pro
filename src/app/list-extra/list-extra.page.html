@@ -1,0 +1,123 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>Extra Calculator</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-list-header color="medium">
+			<ion-label>Gates and Glass Balustrade</ion-label>
+		</ion-list-header>
+
+		<ion-item routerLink="metaal-gates">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FextraSmall%2Ff2-min.png?alt=media&token=65dae49f-928e-416a-a96d-d5d6486a4063"
+					alt="Calculator Metal gates with vertical infill bars"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Metal Gate Calculator</h2>
+				<p>Calculate gap between vertical bars and start points</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="glass-balustrade-proffessional">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FextraSmall%2Fh1-min.png?alt=media&token=c64e7540-d170-4aae-92d0-e2db848e988e"
+					alt="Calculator Glass Balustrade Professional"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Glass Balustrade Professional</h2>
+				<p>Calculate glass sizes, posts number and start points</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="glass-balustrade-elegance">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FextraSmall%2Fh2L-min.png?alt=media&token=4950e86b-c6de-4d90-9fe7-7d37894bf84e"
+					alt="Calculator Glass Balustrade Elegance"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Balustrade Elegance</h2>
+				<p>Calculate glass sizes, posts number and start points</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="glass-balustrade-frameless">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FextraSmall%2Fh3-min.png?alt=media&token=ee7f3f56-9a7d-4321-8651-678ff61aa1b5"
+					alt="Calculator Glass Balustrade Frameless"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Glass Balustrade Frameless</h2>
+				<p>Calculate glass panel numbers and length</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+	</ion-list>
+
+	<ion-list>
+		<ion-list-header color="medium">
+			<ion-label>Trigonometry</ion-label>
+		</ion-list-header>
+
+		<ion-item routerLink="right-angled-triangle">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2Fscience%2Ft2-min.PNG?alt=media&token=348248cf-f9b8-469a-9ff7-93fdb55f1ed3"
+					alt="Calculator Right Angled Triangle"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Right-Angled Triangle</h2>
+				<p>The theorem of Pythagoras. Synes, cosines and tangents</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+
+		<ion-item routerLink="triangle">
+			<ion-thumbnail slot="start">
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2Fscience%2Ft7-min.PNG?alt=media&token=a086651d-6235-47a9-b044-695c12316af9"
+					alt="Calculator Triangle"
+				/>
+			</ion-thumbnail>
+			<ion-label>
+				<h2>Triangle</h2>
+				<p>Sine and cosine rules. Area of any triangle.</p>
+			</ion-label>
+			<ion-icon item-end name="arrow-forward"></ion-icon>
+		</ion-item>
+	</ion-list>
+
+	<ion-card>
+		<ion-card-header>
+			<ion-card-title>Idea for Calculations</ion-card-title>
+		</ion-card-header>
+
+		<ion-card-content>
+			Calculations are build for our main business making products for building
+			industry. If you need extra calculations then simple send email with
+			photos and description to our email address. We will publish your
+			calculations in shortest possible time.
+			<ion-button expand="full" (click)="mailTo()">
+				<ion-icon slot="start" name="mail">designpro3d@outlook.com</ion-icon>
+				Email
+			</ion-button>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

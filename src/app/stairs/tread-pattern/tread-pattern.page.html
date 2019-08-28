@@ -1,0 +1,226 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button [routerLink]="['/stairs']">
+				<ion-icon slot="start" name="arrow-round-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Pattern Calculator</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div [ngSwitch]="treadSegment">
+
+    <div *ngSwitchCase="'pageOne'">
+
+      <div class="imgBox"> 
+        <img *ngIf="tread._type" src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fn2-min.PNG?alt=media&token=013b8656-c18a-482e-a8f7-0899125d5576" alt="Stair tread with square holes" />
+        <img *ngIf="!tread._type" src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fn1-min.PNG?alt=media&token=d40454e9-9574-48ff-9749-bba1b76ce867" alt="Stair tread with circles holes" />
+      </div>
+
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="7">
+            <div text-right>
+              <ion-text color="medium">Switch between squares and circles:</ion-text>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div text-right>{{tread._string}}</div>
+          </ion-col>
+          <ion-col size="2">
+            <div text-left><ion-toggle [(ngModel)]="tread._type" (ionChange)="typeChange()"></ion-toggle></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="7">
+            <div text-right><ion-text color="medium"><ion-label text-right>Length: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="tread._length" type="number" (keyup)="calculateTreadData()" autofocus 
+              clear-input max="10000" #n1 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value, n9.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+            <ion-col size="7">
+              <div text-right><ion-text color="medium"><ion-label text-right>Width: </ion-label></ion-text></div>
+            </ion-col>
+            <ion-col size="5">
+              <div text-left><ion-input [(ngModel)]="tread._width" type="number" (keyup)="calculateTreadData()" 
+                clear-input max="10000" #n2 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value, n9.value)"
+              ></ion-input></div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-start align-items-center>
+            <ion-col size="7">
+              <div text-right><ion-text color="medium"><ion-label text-right>Y1: </ion-label></ion-text></div>
+            </ion-col>
+            <ion-col size="5">
+              <div text-left><ion-input [(ngModel)]="tread._d1" type="number" (keyup)="calculateTreadData()" 
+                clear-input max="10000" #n3 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value, n9.value)"
+              ></ion-input></div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-start align-items-center>
+            <ion-col size="7">
+              <div text-right><ion-text color="medium"><ion-label text-right>Y2: </ion-label></ion-text></div>
+            </ion-col>
+            <ion-col size="5">
+              <div text-left><ion-input [(ngModel)]="tread._d2" type="number" (keyup)="calculateTreadData()" 
+                clear-input max="10000" #n4 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value, n9.value)"
+              ></ion-input></div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-start align-items-center>
+            <ion-col size="7">
+              <div text-right><ion-text color="medium"><ion-label text-right>X1: </ion-label></ion-text></div>
+            </ion-col>
+            <ion-col size="5">
+              <div text-left><ion-input [(ngModel)]="tread._d3" type="number" (keyup)="calculateTreadData()" 
+                clear-input max="10000" #n5 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value, n9.value)"
+              ></ion-input></div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-start align-items-center>
+            <ion-col size="7">
+              <div text-right><ion-text color="medium"><ion-label text-right>X2: </ion-label></ion-text></div>
+            </ion-col>
+            <ion-col size="5">
+              <div text-left><ion-input [(ngModel)]="tread._d4" type="number" (keyup)="calculateTreadData()" 
+                clear-input max="10000" #n6 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value, n9.value)"
+              ></ion-input></div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-start align-items-center>
+            <ion-col size="7">
+              <div text-right *ngIf="tread._type"><ion-text color="medium"><ion-label text-right>a: </ion-label></ion-text></div>
+              <div text-right *ngIf="!tread._type"><ion-text color="medium"><ion-label text-right>fi: </ion-label></ion-text></div>
+            </ion-col>
+            <ion-col size="5">
+              <div text-left><ion-input [(ngModel)]="tread._a" type="number" (keyup)="calculateTreadData()" 
+                clear-input max="10000" #n7 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value, n9.value)"
+              ></ion-input></div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-start align-items-center>
+            <ion-col size="7">
+              <div text-right><ion-text color="medium"><ion-label text-right>Vertical hole numbers: </ion-label></ion-text></div>
+            </ion-col>
+            <ion-col size="5">
+              <div text-left><ion-input [(ngModel)]="tread._cutNumV" type="number" (keyup)="calculateTreadData()" 
+                clear-input max="10000" #n8 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value, n9.value)"
+              ></ion-input></div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-start align-items-center>
+            <ion-col size="7">
+              <div text-right><ion-text color="medium"><ion-label text-right>Horizontal hole numbers: </ion-label></ion-text></div>
+            </ion-col>
+            <ion-col size="5">
+              <div text-left><ion-input [(ngModel)]="tread._cutNumH" type="number" (keyup)="calculateTreadData()" 
+                clear-input max="10000" #n9 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value, n9.value)"
+              ></ion-input></div>
+            </ion-col>
+          </ion-row>
+
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">G1:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{tread._G1}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">G2:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{tread._G2}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">c1:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{tread._C1}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">c2:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{tread._C2}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+
+    <div *ngSwitchCase="'pageTwo'">
+
+      <div class="imgBox"> 
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fn3-min.PNG?alt=media&token=55b19864-e78b-45c4-a15b-edc63d178d1d" alt="Tread start points" />
+      </div>
+      <ion-card *ngIf="tread._cutNumH > 1">
+        <ion-card-header style="padding-bottom: 0px; text-align: center;">
+          <ion-card-title color="success">Start Points</ion-card-title>
+        </ion-card-header>
+        
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-list>
+                <ion-item *ngFor="let s of tread?._startPointsA; let i = index" [style.background-color]="i % 2 ? '#EBEBEB' : 'white'">
+                  H{{i + 1}}: <strong style="margin-left: 1em;">{{s}}</strong>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+            <ion-col size="6">
+              <ion-list>
+                <ion-item *ngFor="let sg of tread?._startPointsB; let i = index" [style.background-color]="i % 2 ? '#EBEBEB' : 'white'">
+                  V{{i + 1}}: <strong style="margin-left: 1em;">{{sg}}</strong>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+                  
+      </ion-card>
+
+    </div>
+
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-segment [(ngModel)]="treadSegment">
+      <ion-segment-button value="pageOne">Data</ion-segment-button>
+      <ion-segment-button value="pageTwo">Start Points</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
+

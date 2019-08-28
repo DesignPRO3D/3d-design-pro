@@ -1,0 +1,194 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button [routerLink]="['/stairs']">
+				<ion-icon slot="start" name="arrow-round-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Landing for Stairs</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<p class="text-center" *ngIf="btnShowDwg">
+		<ion-chip (click)="stairDWG = true; btnShowDwg = false">
+			<ion-avatar>
+				<img
+					src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fk6-min.PNG?alt=media&token=de3a8e21-0f3e-4f27-baec-39ca7511b00e"
+					alt="Landing for stairs"
+				/>
+			</ion-avatar>
+			<ion-label>Show Drawing</ion-label>
+		</ion-chip>
+	</p>
+
+	<div class="imgBox" *ngIf="stairDWG">
+		<ion-fab
+			vertical="top"
+			horizontal="end"
+			slot="fixed"
+			(click)="stairDWG = false; btnShowDwg = true"
+		>
+			<ion-fab-button size="small" translucent color="danger">
+				<ion-icon name="close"></ion-icon>
+			</ion-fab-button>
+		</ion-fab>
+		<img
+			src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fk6-min.PNG?alt=media&token=de3a8e21-0f3e-4f27-baec-39ca7511b00e"
+			alt="Landing for stairs"
+		/>
+	</div>
+
+	<ion-grid>
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right>
+					<ion-text color="medium"
+						><ion-label text-right>A: </ion-label></ion-text
+					>
+				</div>
+			</ion-col>
+			<ion-col size="5">
+				<div text-left>
+					<ion-input
+						[(ngModel)]="stair._A"
+						type="number"
+						(keyup)="calculateStairData()"
+						autofocus
+						clear-input
+						max="10000"
+						#num1
+						(ionChange)="
+							calculateInputChange(
+								num1.value,
+								num2.value,
+								num3.value,
+								num4.value
+							)
+						"
+					></ion-input>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right>
+					<ion-text color="medium"
+						><ion-label text-right>Stair Width: </ion-label></ion-text
+					>
+				</div>
+			</ion-col>
+			<ion-col size="5">
+				<div text-left>
+					<ion-input
+						[(ngModel)]="stair._width"
+						type="number"
+						(keyup)="calculateStairData()"
+						autofocus
+						clear-input
+						max="10000"
+						#num2
+						(ionChange)="
+							calculateInputChange(
+								num1.value,
+								num2.value,
+								num3.value,
+								num4.value
+							)
+						"
+					></ion-input>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right>
+					<ion-text color="medium"
+						><ion-label text-right>Tread Going: </ion-label></ion-text
+					>
+				</div>
+			</ion-col>
+			<ion-col size="5">
+				<div text-left>
+					<ion-input
+						[(ngModel)]="stair._going"
+						type="number"
+						(keyup)="calculateStairData()"
+						autofocus
+						clear-input
+						max="10000"
+						#num3
+						(ionChange)="
+							calculateInputChange(
+								num1.value,
+								num2.value,
+								num3.value,
+								num4.value
+							)
+						"
+					></ion-input>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right>
+					<ion-text color="medium"
+						><ion-label text-right>Tread Number: </ion-label></ion-text
+					>
+				</div>
+			</ion-col>
+			<ion-col size="5">
+				<div text-left>
+					<ion-input
+						[(ngModel)]="stair._treadNum"
+						type="number"
+						(keyup)="calculateStairData()"
+						autofocus
+						clear-input
+						max="10000"
+						#num4
+						(ionChange)="
+							calculateInputChange(
+								num1.value,
+								num2.value,
+								num3.value,
+								num4.value
+							)
+						"
+					></ion-input>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-grid>
+		<ion-row justify-content-start align-items-center>
+			<ion-col size="5">
+				<div text-right><ion-text color="medium">Landing Width:</ion-text></div>
+			</ion-col>
+			<ion-col size="5">
+				<div
+					text-left
+					class="result"
+					[style.color]="errorLandingWidth ? 'red' : 'black'"
+				>
+					{{ stair._landingWidth }}
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-card>
+		<ion-card-header style="padding-bottom: 0px;">
+			<ion-card-title color="success">Stair Landing Width</ion-card-title>
+			<ion-card-subtitle>The following rules must be met:</ion-card-subtitle>
+		</ion-card-header>
+
+		<ion-card-content style="padding-top: 0px;">
+			<ul>
+				<li>Landing should be at least stair width.</li>
+			</ul>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

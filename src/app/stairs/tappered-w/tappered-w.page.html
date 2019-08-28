@@ -1,0 +1,162 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-button [routerLink]="['/stairs']">
+            <ion-icon slot="start" name="arrow-round-back"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Tapered Treads(width &gt; 1000)</ion-title> 
+      </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <p class="text-center" *ngIf="btnShowDwg">
+        <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2F2-min.PNG?alt=media&token=755319d7-5e90-407b-802f-966580d2e4ab" alt="Special stairs with tapered treads width greater than 1m" />
+          </ion-avatar>
+          <ion-label>Show Drawing</ion-label>
+        </ion-chip>
+      </p>
+    
+      <div class="imgBox" *ngIf="stairDWG"> 
+        <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+          <ion-fab-button  size="small" translucent color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2F2-min.PNG?alt=media&token=755319d7-5e90-407b-802f-966580d2e4ab" alt="Special stairs with tapered treads width greater than 1m" />
+      </div>
+    
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>R Out(radius outside): </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._Rout" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num1 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>R IN(radius inside): </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._Rin" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num2 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Angle: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._angle" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num3 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>D out: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._Dout" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num4 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>D in: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._Din" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num5 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Tread Number: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._treadNum" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num6 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">L out:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._Lout}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">L in:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._Lin}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Angle Tread:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._angleT}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Stair Width:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._width}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">D1:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._D1}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">D2:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._D2}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-card>
+        <ion-card-header style="padding-bottom: 0px;">
+          <ion-card-title color="success">Tapered treads stair width 1000mm or more</ion-card-title>
+          <ion-card-subtitle>The following rules must be met:</ion-card-subtitle>
+        </ion-card-header>
+        
+        <ion-card-content style="padding-top: 0px;">
+          <ul>
+            <li>Measure going(L out) at 270 of outside tread. 
+              Tread going(L out) is not more than maximum for stair category(straight stairs)</li>
+            <li>Measure going(L in) at 270 of inside tread. 
+              Tread going(L in) is not less than minimum for stair category(straight stairs)</li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>

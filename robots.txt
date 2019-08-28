@@ -1,0 +1,5 @@
+# Group 1
+User-agent: *
+Allow: /
+
+Sitemap: https://3d-design-pro.com/sitemap.xml

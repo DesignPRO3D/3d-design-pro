@@ -1,0 +1,175 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button [routerLink]="['/extra']">
+				<ion-icon slot="start" name="arrow-round-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Glass Balustrade Professional</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <p class="text-center" *ngIf="btnShowDwg">
+    <ion-chip (click)="mainDWG = true; btnShowDwg = false;">
+      <ion-avatar>
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FextraBig%2Fh1-min.PNG?alt=media&token=550097ba-4758-4d41-8765-631dad281f61" alt="Calculator Glass Balustrade Professional" />
+      </ion-avatar>
+      <ion-label>Show Drawing</ion-label>
+    </ion-chip>
+  </p>
+
+  <div class="imgBox" *ngIf="mainDWG"> 
+    <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="mainDWG = false; btnShowDwg = true;">
+        <ion-fab-button  size="small" translucent color="danger">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FextraBig%2Fh1-min.PNG?alt=media&token=550097ba-4758-4d41-8765-631dad281f61" alt="Calculator Glass Balustrade Professional" class="h-300" />
+  </div>
+
+  <ion-grid>
+
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium"><ion-label text-right>Posts Centre: </ion-label></ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left><ion-input [(ngModel)]="model._postsCentre" type="number" (keyup)="calculateData()" max="100000" #n1 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value)"
+          ></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium"><ion-label text-right>Handrail D: </ion-label></ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left><ion-input [(ngModel)]="model._handrailD" type="number" (keyup)="calculateData()" max="10000" #n2 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value)"
+          ></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium"><ion-label text-right>Gap A: </ion-label></ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left><ion-input [(ngModel)]="model._gapA" type="number" (keyup)="calculateData()" max="10000" #n3 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value)"
+          ></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Gap B: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._gapB" type="number" (keyup)="calculateData()" max="10000" #n4 
+  (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row justify-content-start align-items-center>
+            <ion-col size="5">
+              <div text-right><ion-text color="medium"><ion-label text-right>Gap C: </ion-label></ion-text></div>
+            </ion-col>
+            <ion-col size="4">
+              <div text-left><ion-input [(ngModel)]="model._gapC" type="number" (keyup)="calculateData()" max="10000" #n5 
+    (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value)"
+              ></ion-input></div>
+            </ion-col>
+          </ion-row>
+
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium"><ion-label text-right>Height: </ion-label></ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left><ion-input [(ngModel)]="model._height" type="number" (keyup)="calculateData()"  max="1000" #n6 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value)"
+          ></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium"><ion-label text-right>Post D: </ion-label></ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left><ion-input [(ngModel)]="model._postD" type="number" (keyup)="calculateData()"  max="1000" #n7 
+  (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value)"
+          ></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium"><ion-label text-right>Glass Panels Number: </ion-label></ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left><ion-input [(ngModel)]="model._panelsNum" type="number" (keyup)="calculateData()"  max="1000" #n8 
+    (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value, n5.value, n6.value, n7.value, n8.value)"
+          ></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+  </ion-grid> 
+
+  <ion-grid>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium">Glass Height:</ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left class="result">{{model._glassHeight}}</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium">Glass Width:</ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left class="result">{{model._glassWidth}}</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium">Posts Number:</ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left class="result">{{model._postsNum}}</div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-card *ngIf="model._glassWidth > 0 && model._glassWidth < model._postsCentre && model._panelsNum > 1">
+    <ion-card-header class="startPointsHeader">
+      <ion-card-title>Start Points</ion-card-title>
+    </ion-card-header>
+    
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size-12 size-sm-6 size-md-1>
+          <ion-list>
+            <ion-item *ngFor="let s of model?._startPoints; let i = index" [color]="i % 2 ? 'medium' : 'light'">
+              S{{i + 1}}: <strong style="margin-left: 1em;">{{s}}</strong>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+</ion-content>

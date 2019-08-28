@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/railings']">
+        <ion-icon slot="start" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Spindle A (Tread) - Spindle B (Tread)</ion-title>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content padding>
+
+    <p style="text-align: center;" *ngIf="btnShowDwg">
+      <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+        <ion-avatar>
+          <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2Fg4-min.PNG?alt=media&token=3f6c4e06-f520-4afc-9f0c-ab03c0718c98" alt="How to work out spindles for a cut string - open tread stairs - sample tread-A tread-B" />
+        </ion-avatar>
+        <ion-label>Show Drawing</ion-label>
+      </ion-chip>
+    </p>
+  
+    <div class="imgBox" *ngIf="stairDWG"> 
+      <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+        <ion-fab-button  size="small" translucent color="danger">
+          <ion-icon name="close"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2Fg4-min.PNG?alt=media&token=3f6c4e06-f520-4afc-9f0c-ab03c0718c98" alt="How to work out spindles for a cut string - open tread stairs - sample tread-A tread-B" />
+    </div>
+  
+    <ion-grid>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Going: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._length" type="number" (keyup)="calculateData()" max="10000" #n1 
+  (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>D1: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._D1" type="number" (keyup)="calculateData()" max="10000" #n2 
+  (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Hoop Diameter: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._hoopDiam" type="number" (keyup)="calculateData()" max="10000" #n3 
+  (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Bar Diameter: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._barDiam" type="number" (keyup)="calculateData()" max="10000" #n4 
+  (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+  
+    </ion-grid> 
+  
+    <ion-grid>
+  
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">Gap between bars:</ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left class="result">{{model._gap}}</div>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">D2:</ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left class="result">{{model._D2}}</div>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">S1:</ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left class="result">{{model._S1}}</div>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium">S2:</ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left class="result">{{model._S2}}</div>
+        </ion-col>
+      </ion-row>
+  
+    </ion-grid>
+  
+  </ion-content>

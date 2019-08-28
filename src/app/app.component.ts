@@ -18,19 +18,34 @@ export class AppComponent {
 		},
 		{
 			title: 'Stair Calculator',
-			url: '/list',
+			url: '/stairs',
 			icon: 'fitness'
 		},
 		{
-			title: 'Railings and Balustrade Calculator',
-			url: '/balustrades&railings',
+			title: 'Railings & Balustrade Calculator',
+			url: '/railings',
 			icon: 'barcode'
+		},
+		{
+			title: 'Extra',
+			url: '/extra',
+			icon: 'beer'
+		},
+		{
+			title: 'Web Page Validation',
+			url: '/web-progressive-app',
+			icon: 'globe'
+		},
+		{
+			title: 'Privacy Policy & Cookie Usage',
+			url: '/privacy',
+			icon: 'flag'
 		}
 	];
 
-	constructor(private platform: Platform) // private splashScreen: SplashScreen,
-	// private statusBar: StatusBar
-	{
+	constructor(
+		private platform: Platform // private splashScreen: SplashScreen, // private statusBar: StatusBar
+	) {
 		this.initializeApp();
 	}
 

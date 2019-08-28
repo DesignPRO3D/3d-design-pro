@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/stairs']">
+        <ion-icon slot="start" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Stairs Headroom Reduced - Loft Conversion(not enough space)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding> 
+
+    <div class="imgBox"> 
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fz1-min.PNG?alt=media&token=b575607e-21c1-46af-8154-3d1ce7db8e87" alt="Stair reduced headroom" alt="Stair reduced headroom" />
+      </div>
+    
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>A: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._A" type="number" (keyup)="calculateStairData()" 
+              autofocus  #obst (ionChange)="calculateInputChange(obst.value, obst2.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>C: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._C" type="number" (keyup)="calculateStairData()" 
+               #obst2 (ionChange)="calculateInputChange(obst.value, obst2.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">B:</ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left class="result" [style.color]="errorB ? 'red' : 'black'">{{stair._B}}</div>
+          </ion-col>
+          <ion-col size="3" *ngIf="stair._B">
+            <ion-text color="medium">(&gt;1900)</ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-card>
+        <ion-card-content>
+          Where there is not enough space to achieve 2m headroom reduced headroom as shown in photo will be satisfactory.
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>

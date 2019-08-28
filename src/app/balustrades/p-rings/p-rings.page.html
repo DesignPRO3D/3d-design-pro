@@ -1,0 +1,185 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/railings']">
+        <ion-icon slot="start" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Railing panel - Rings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="model._page">
+
+    <div *ngSwitchCase="'one'">
+    
+      <p style="text-align: center;" *ngIf="btnShowDwg">
+        <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FRP1-min.PNG?alt=media&token=a6a450f6-01cb-4ede-a891-113bd3f1d7c5" alt="Railing with rings" />
+          </ion-avatar>
+          <ion-label>Show Drawing</ion-label>
+        </ion-chip>
+      </p>
+            
+      <div class="imgBox" *ngIf="stairDWG"> 
+        <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+          <ion-fab-button  size="small" translucent color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FRP1-min.PNG?alt=media&token=a6a450f6-01cb-4ede-a891-113bd3f1d7c5" alt="Railing with rings" style="max-height: 270px;"/>
+      </div>
+    
+    </div>
+    
+      <div *ngSwitchCase="'two'">
+    
+          <p style="text-align: center;" *ngIf="btnShowDwg2">
+            <ion-chip (click)="stairDWG2 = true; btnShowDwg2 = false;">
+              <ion-avatar>
+                <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FRP2-min.PNG?alt=media&token=c0c2fb2c-3385-4264-8cb8-36056f253afd" alt="Railing with rings" />
+              </ion-avatar>
+              <ion-label>Show Drawing</ion-label>
+            </ion-chip>
+          </p>
+              
+          <div class="imgBox" *ngIf="stairDWG2"> 
+            <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG2 = false; btnShowDwg2 = true;">
+                <ion-fab-button  size="small" translucent color="danger">
+                <ion-icon name="close"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FRP2-min.PNG?alt=media&token=c0c2fb2c-3385-4264-8cb8-36056f253afd" style="max-height: 270px;" alt="Railing with rings"/>
+          </div>
+      
+        </div>
+    
+        <div *ngSwitchCase="'three'">
+    
+          <p style="text-align: center;" *ngIf="btnShowDwg3">
+            <ion-chip (click)="stairDWG3 = true; btnShowDwg3 = false;">
+              <ion-avatar>
+                <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FRP3-min.PNG?alt=media&token=6ef82f9c-0f63-4411-8735-139b729cac3c" alt="Railing with rings" />
+              </ion-avatar>
+              <ion-label>Show Drawing</ion-label>
+            </ion-chip>
+          </p>
+                
+          <div class="imgBox" *ngIf="stairDWG3"> 
+            <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG3 = false; btnShowDwg3 = true;">
+                <ion-fab-button  size="small" translucent color="danger">
+                <ion-icon name="close"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2FRP3-min.PNG?alt=media&token=6ef82f9c-0f63-4411-8735-139b729cac3c" style="max-height: 270spx;" alt="Railing with rings"/>
+          </div>
+        
+        </div>
+    
+      </div>
+    
+      <ion-grid>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Panel Length: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._length" type="number" (keyup)="calculateData()" max="10000" #n1 
+    (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Bar Diameter: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._barDiam" type="number" (keyup)="calculateData()" max="10000" #n2 
+      (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Gap Ring: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._ringDiam" type="number" (keyup)="calculateData()" max="10000" #n3 
+        (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Gap Ring Number: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left><ion-input [(ngModel)]="model._ringNum" type="number" (keyup)="calculateData()" max="10000" #n4 
+          (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+    
+      </ion-grid>
+    
+      <ion-grid>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Gap Empty:</ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left class="result">{{model._gapEmpty}}</div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Bar Number:</ion-text></div>
+          </ion-col>
+          <ion-col size="4">
+            <div text-left class="result">{{model._barNum}}</div>
+          </ion-col>
+        </ion-row>
+    
+      </ion-grid>
+    
+      <ion-card *ngIf="model._barNum > 0">
+        <ion-card-header class="startPointsHeader">
+          <ion-card-title>Start Points</ion-card-title>
+        </ion-card-header>
+          
+        <ion-grid no-padding>
+    
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col size-12 size-sm-6 size-md-1>
+              <ion-list>
+                <ion-item *ngFor="let s of model?._startPoints; let i = index" [color]="i % 2 ? 'medium' : 'light'">
+                  S{{i + 1}}: <strong style="margin-left: 1em;">{{s}}</strong>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+    
+        </ion-grid>
+      </ion-card>
+    
+</ion-content>
+    
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-segment [(ngModel)]="model._page">
+      <ion-segment-button value="one" (click)="chosePanelA(1)">Pattern A</ion-segment-button>
+      <ion-segment-button value="two" (click)="chosePanelA(2)">Pattern B</ion-segment-button>
+      <ion-segment-button value="three" (click)="chosePanelA(3)">Pattern C</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

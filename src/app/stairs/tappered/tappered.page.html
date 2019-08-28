@@ -1,0 +1,131 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/stairs']">
+        <ion-icon slot="start" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Tapered Treads(width &lt; 1000)</ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <p class="text-center" *ngIf="btnShowDwg">
+        <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fz2-min.PNG?alt=media&token=85c1301f-1a22-44e5-b9c1-2f3353a4bf63" alt="Special stairs with tapered treads width less than 1m" />
+          </ion-avatar>
+          <ion-label>Show Drawing</ion-label>
+        </ion-chip>
+      </p>
+    
+      <div class="imgBox" *ngIf="stairDWG"> 
+        <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+          <ion-fab-button  size="small" translucent color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fz2-min.PNG?alt=media&token=85c1301f-1a22-44e5-b9c1-2f3353a4bf63" alt="Special stairs with tapered treads width less than 1m" />
+      </div>
+    
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>R Out(radius outside): </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._Rout" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num1 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>R IN(radius inside): </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._Rin" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num2 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Angle: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._angle" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num3 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Tread Number: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._treadNum" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num4 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">L Mid:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._Lmid}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Angle Tread:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._angleT}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Stair Width:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._width}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">D2:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._D1}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">D1:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._D2}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-card>
+        <ion-card-header style="padding-bottom: 0px;">
+          <ion-card-title color="success">Tapered treads stair width less than 1000mm</ion-card-title>
+          <ion-card-subtitle>The following rules must be met:</ion-card-subtitle>
+        </ion-card-header>
+        
+        <ion-card-content style="padding-top: 0px;">
+          <ul>
+            <li>Measure going(L Mid) at centre of tread.</li>
+            <li>Measure from curved stair line, even when tread is a rectangular enclosure.</li>
+            <li>50mm minimum tread width at narrow end.</li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

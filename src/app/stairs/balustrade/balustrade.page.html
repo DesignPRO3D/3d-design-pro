@@ -1,0 +1,187 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button [routerLink]="['/stairs']">
+				<ion-icon slot="start" name="arrow-round-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Stairs Handrails & Balustrades</ion-title>
+	</ion-toolbar>
+</ion-header> 
+
+<ion-content padding>
+    <p class="text-center" *ngIf="btnShowDwg">
+        <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fe1-min.PNG?alt=media&token=3ef45df5-e8c8-4e4c-9bcf-ee22fae01f76" alt="Stairs handrails and balustrades">
+          </ion-avatar>
+          <ion-label>Show Drawing</ion-label>
+        </ion-chip>
+      </p>
+    
+      <div class="imgBox" *ngIf="stairDWG"> 
+        <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+            <ion-fab-button  size="small" translucent color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fe1-min.PNG?alt=media&token=3ef45df5-e8c8-4e4c-9bcf-ee22fae01f76" alt="Stairs handrails and balustrades" />
+      </div>
+    
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>d: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._d" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num1 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value, num7.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Post Diameter: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._postD" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num2 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value, num7.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Baluster Diameter: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._barD" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num3 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value, num7.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Landing: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._landing" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num4 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value, num7.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Going: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._Tgoing" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num5 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value, num7.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Step Number: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._stepNum" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num6 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value, num7.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Baluster Number: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._barNum" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num7 (ionChange)="calculateInputChange(num1.value, num2.value, num3.value, num4.value, num5.value, num6.value, num7.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Gap:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._gap}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">A:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._A}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-card>
+        <ion-card-header style="padding-bottom: 0px;">
+          <ion-card-title color="success">Suitable handrails for common stairs in blocks of flats</ion-card-title>
+        </ion-card-header>
+        
+        <ion-card-content style="padding-top: 0px;">
+          With the entrance storey of a dwelling: if a flight comprises three or more risers, provide a suitable continuous handrail:
+          <ul>
+            <li>on each side of the flights, and</li>
+            <li>on each side of any intermediate landings.</li>
+          </ul>
+          In buildings other than dwellings and in buildings that contain flats and do not 
+          have passenger lifts: on the common stairs, if they comprise two or more risers, 
+          provide suitable continuous handrails. Landing Balustrade(HL) height is 1000mm and stair balustrade(HS) is 900mm:
+          <ul>
+            <li>on each side of the flights, and</li>
+            <li>on each side of the landings</li>
+          </ul> 
+          In situations other than those described above:
+          <ul>
+            <li>If the stairs are less than 1000mm wide: provide a handrail on one or both sides.</li>
+            <li>If the stairs are 1000mm wider: provide handrail on both sides.</li>
+          </ul>
+          In public buildings and any building where stairs are intended for use by people 
+          with disabilities: provide handrails beside the two bottom steps.
+          <br />
+          In all buildings, design handrails as follows:
+          <ul>
+            <li>Position the top of the handrail(HL and HS) 900-1000mm from the pitch line or floor.</li>
+            <li>The handrail may form the top of a guarding if you can match the heights,</li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
+    
+      <ion-card>
+        <ion-card-header style="padding-bottom: 0px;">
+          <ion-card-title color="success">In buildings other than dwellings</ion-card-title>
+        </ion-card-header>
+          
+        <ion-card-content style="padding-top: 0px;">
+          <ul>
+            <li>Position the top of the handrail(HL) 900-1100mm from the landing floor.</li>
+            <li>Position the top of the handrail(HL) 900-1000mm from the stair pitch line.</li>
+            <li>Where there is full-height structural guarding, if you provide a second(lower) handrail, 
+              ensure that the vertical height from the pitch line of the steps 
+              or the surface of the ramp to the top of the second(lower) handrail is 600mm.
+            </li>
+            <li>Use continuous handrail along the flights and landings of a ramped or stepped flight.</li>
+            <li>Ensure that handrails do not project into an access route.</li>
+            <li>Ensure that handrail contasts vissuall with the background against which it is seen, without being highly reflective.</li>
+            <li>Use a surface for the handrail that is slip-resistant and not cold to touch.</li>
+            <li>Finish the end of the handrail in a way that reduces the risk of clothing being caught.</li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
+    
+  <ion-card>
+    <ion-card-header style="padding-bottom: 0px;">
+      <ion-card-title color="success">Gap between balusters</ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="padding-top: 0px;">
+      100mm sphere should not be able to pass through any opening in the balustrade, as such, the maximum gap between the spindles should not be any greater than 99mm.
+    </ion-card-content>
+  </ion-card>  
+</ion-content>

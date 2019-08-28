@@ -1,0 +1,250 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button [routerLink]="['/railings']">
+				<ion-icon slot="start" name="arrow-round-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Railing Section</ion-title>
+		<ion-buttons slot="end" *ngIf="btnShowPanelDwg">
+			<ion-button
+				fill="outline"
+				color="secondary"
+				(click)="panelDWG = true; btnShowPanelDwg = false"
+				>Show Panel</ion-button
+			>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="model._type">
+
+    <div *ngSwitchCase="'one'">
+
+      <p style="text-align: center;" *ngIf="btnShowDwg">
+        <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2Fa3-min.PNG?alt=media&token=8bd54a53-bc8c-4a0d-8e51-513f1037299f" alt="Rake with vertical bars">
+          </ion-avatar>
+          <ion-label>Show Drawing</ion-label>
+        </ion-chip>
+      </p>
+        
+      <div class="imgBox" *ngIf="stairDWG"> 
+        <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+            <ion-fab-button  size="small" translucent color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2Fa3-min.PNG?alt=media&token=8bd54a53-bc8c-4a0d-8e51-513f1037299f" alt="Rake with vertical bars"/>
+      </div>
+
+    </div>
+
+    <div *ngSwitchCase="'two'">
+
+      <p style="text-align: center;" *ngIf="btnShowDwg2">
+        <ion-chip (click)="stairDWG2 = true; btnShowDwg2 = false;">
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2Fa2-min.PNG?alt=media&token=75caea71-a994-4c79-b412-9f0b33f27f87" alt="Rake with vertical bars" />
+          </ion-avatar>
+          <ion-label>Show Drawing</ion-label>
+        </ion-chip>
+      </p>
+          
+      <div class="imgBox" *ngIf="stairDWG2"> 
+        <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG2 = false; btnShowDwg2 = true;">
+            <ion-fab-button  size="small" translucent color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2Fa2-min.PNG?alt=media&token=75caea71-a994-4c79-b412-9f0b33f27f87" alt="Rake with vertical bars" />
+      </div>
+  
+    </div>
+
+    <div *ngSwitchCase="'three'">
+
+      <p style="text-align: center;" *ngIf="btnShowDwg3">
+        <ion-chip (click)="stairDWG3 = true; btnShowDwg3 = false;">
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2Fa1-min.PNG?alt=media&token=98aa6608-222a-4973-a0ff-2252a19ad1ef" alt="Rake with vertical bars" />
+          </ion-avatar>
+          <ion-label>Show Drawing</ion-label>
+        </ion-chip>
+      </p>
+            
+      <div class="imgBox" *ngIf="stairDWG3"> 
+        <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG3 = false; btnShowDwg3 = true;">
+            <ion-fab-button  size="small" translucent color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2Fa1-min.PNG?alt=media&token=98aa6608-222a-4973-a0ff-2252a19ad1ef" alt="Rake with vertical bars" />
+      </div>
+    
+    </div>
+
+  </div>
+
+  <div class="imgBox" *ngIf="panelDWG"> 
+    <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="panelDWG = false; btnShowPanelDwg = true;">
+      <ion-fab-button  mini color="danger" size="small" fill="outline">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-big%2F4-min.png?alt=media&token=44492ccb-d63b-458b-8b0a-5736ad12f704" alt="Rake with vertical bars" />
+  </div>
+
+  <ion-grid>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium"><ion-label text-right>Section Length: </ion-label></ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left><ion-input [(ngModel)]="model._sectionLength" type="number" (keyup)="calculateData()" #n1 
+(ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+        ></ion-input></div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium"><ion-label text-right>Angle: </ion-label></ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left><ion-input [(ngModel)]="model._angle" type="number" (keyup)="calculateData()"  #n2 
+  (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+        ></ion-input></div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium"><ion-label text-right>Post Diameter: </ion-label></ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left><ion-input [(ngModel)]="model._postDiam" type="number" (keyup)="calculateData()"  #n3 
+  (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+        ></ion-input></div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium"><ion-label text-right>Panels Number: </ion-label></ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left><ion-input [(ngModel)]="model._panelsNum" type="number" (keyup)="calculateData()" max="10000" #n4 
+    (ionChange)="calculateInputChange(n1.value, n2.value, n3.value, n4.value)"
+        ></ion-input></div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-grid>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium">Post Number:</ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left class="result">{{model._postsNum}}</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium">D:</ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left class="result">{{model._panelD}}</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium">Panel Length:</ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left class="result">{{model._panelLength}}</div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-grid *ngIf="model._panelLength > 0 && model._panelLength < model._sectionLength">
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium"><ion-label text-right>Bar Diameter: </ion-label></ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left><ion-input [(ngModel)]="model._barDiam" type="number" (keyup)="calculateData()"  #n4 
+  (ionChange)="calculateInputChange2(n4.value, n5.value)"
+        ></ion-input></div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-start align-items-center>
+        <ion-col size="5">
+          <div text-right><ion-text color="medium"><ion-label text-right>Bar Number: </ion-label></ion-text></div>
+        </ion-col>
+        <ion-col size="4">
+          <div text-left><ion-input [(ngModel)]="model._barsNum" type="number" (keyup)="calculateData()" max="500" #n5 
+    (ionChange)="calculateInputChange2(n4.value, n5.value)"
+          ></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+  </ion-grid>
+
+  <ion-grid *ngIf="model._barsNum > 0">
+
+    <ion-row justify-content-start align-items-center>
+      <ion-col size="5">
+        <div text-right><ion-text color="medium">Gap:</ion-text></div>
+      </ion-col>
+      <ion-col size="4">
+        <div text-left class="result">{{model._gap}}</div>
+      </ion-col>
+    </ion-row>
+  
+  </ion-grid>
+
+  <ion-card *ngIf="model._barsNum > 0">
+    <ion-card-header class="startPointsHeader">
+      <ion-card-title>Start Points</ion-card-title>
+    </ion-card-header>
+      
+    <ion-grid no-padding>
+
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size-12 size-sm-6 size-md-1>
+          <ion-list>
+            <ion-item *ngFor="let s of model?._startPoints; let i = index" [color]="i % 2 ? 'medium' : 'light'">
+              S{{i + 1}}: <strong style="margin-left: 1em;">{{s}}</strong>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-segment [(ngModel)]="model._type">
+      <ion-segment-button value="one" (click)="chosePanelA('one')">Pattern A</ion-segment-button>
+      <ion-segment-button value="two" (click)="chosePanelA('two')">Pattern B</ion-segment-button>
+      <ion-segment-button value="three" (click)="chosePanelA('three')">Pattern C</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

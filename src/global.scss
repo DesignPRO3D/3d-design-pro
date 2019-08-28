@@ -10,17 +10,74 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
-@import "~@ionic/angular/css/core.css";
+@import '~@ionic/angular/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-@import "~@ionic/angular/css/normalize.css";
-@import "~@ionic/angular/css/structure.css";
-@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "~@ionic/angular/css/padding.css";
-@import "~@ionic/angular/css/float-elements.css";
-@import "~@ionic/angular/css/text-alignment.css";
-@import "~@ionic/angular/css/text-transformation.css";
-@import "~@ionic/angular/css/flex-utils.css";
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+.imgBox {
+	position: relative;
+	text-align: center;
+}
+
+.imgBox img {
+	display: block;
+	max-height: 300px;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+ion-input,
+ion-textarea {
+	background-color: rgb(243, 247, 186) !important;
+}
+
+.result {
+	font-weight: bold !important;
+	background-color: rgb(183, 241, 252);
+	font-size: 1.3em !important;
+	padding-left: 1em;
+}
+
+ion-chip {
+	cursor: pointer;
+}
+
+.startPointsHeader {
+	text-align: center;
+	background-color: rgba(196, 192, 192, 0.575);
+	font-size: 12px;
+	color: #43b4d6;
+	margin-bottom: 0px !important;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.error {
+	padding: 1.1rem;
+	font-size: 1.1rem;
+	color: tomato;
+	font-weight: bold;
+}
+
+.success {
+	padding: 1.1rem;
+	font-size: 1.1rem;
+	color: #43d668;
+	font-weight: bold;
+}

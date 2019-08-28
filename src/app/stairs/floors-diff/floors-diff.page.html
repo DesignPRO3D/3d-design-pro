@@ -1,0 +1,216 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button [routerLink]="['/stairs']">
+				<ion-icon slot="start" name="arrow-round-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Stairs - Floor Different Thickness</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="stairSegment">
+
+    <div *ngSwitchCase="'pageOne'">
+    
+      <p class="text-center" *ngIf="btnShowDwg">
+        <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fe2-min.PNG?alt=media&token=470b9afc-17b5-44e9-a439-db6a1a0aad6d" alt="Stairs different finish floor thickness" />
+          </ion-avatar>
+          <ion-label>Show Drawing</ion-label>
+        </ion-chip>
+      </p>
+    
+      <div class="imgBox" *ngIf="stairDWG"> 
+        <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+          <ion-fab-button  size="small" translucent color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fe2-min.PNG?alt=media&token=470b9afc-17b5-44e9-a439-db6a1a0aad6d" alt="Stairs different finish floor thickness" />
+      </div>
+    
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="8">
+            <div text-right>
+              <ion-text color="medium">Switch between FFL and STS:</ion-text>
+            </div>
+          </ion-col>
+          <ion-col size="2">
+            <div text-right>{{calcTypeString}}</div>
+          </ion-col>
+          <ion-col size="2">
+            <div text-left><ion-toggle [(ngModel)]="calcType" (ionChange)="calcTypeChange()"></ion-toggle></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row justify-content-start align-items-center *ngIf="calcType">
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>FFL: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._FFL" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num1 (ionChange)="calculateInputChangeA(num1.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center *ngIf="!calcType">
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>STS: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._BTB" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num2 (ionChange)="calculateInputChangeB(num2.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>D1: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._D1" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num3 (ionChange)="calculateInputChange(num3.value, num4.value, num5.value, num6.value, num7.value, num8.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>D2: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._D2" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num4 (ionChange)="calculateInputChange(num3.value, num4.value, num5.value, num6.value, num7.value, num8.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>D3: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._D3" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num5 (ionChange)="calculateInputChange(num3.value, num4.value, num5.value, num6.value, num7.value, num8.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>A1: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._A1" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num6 (ionChange)="calculateInputChange(num3.value, num4.value, num5.value, num6.value, num7.value, num8.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>A2: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._A2" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num7 (ionChange)="calculateInputChange(num3.value, num4.value, num5.value, num6.value, num7.value, num8.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium"><ion-label text-right>Rise Number: </ion-label></ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left><ion-input [(ngModel)]="stair._riseNum" type="number" (keyup)="calculateStairData()" autofocus 
+              clear-input max="10000" #num8 (ionChange)="calculateInputChange(num3.value, num4.value, num5.value, num6.value, num7.value, num8.value)"
+            ></ion-input></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row justify-content-start align-items-center>
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">Tread Rise:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._Trise}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center *ngIf="!calcType">
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">FFL:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._FFLResult}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-start align-items-center *ngIf="calcType">
+          <ion-col size="5">
+            <div text-right><ion-text color="medium">STS:</ion-text></div>
+          </ion-col>
+          <ion-col size="5">
+            <div text-left class="result">{{stair._BTBResult}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+
+    <div *ngSwitchCase="'pageTwo'">
+      
+      <div class="imgBox"> 
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fa2-min.PNG?alt=media&token=d87bedce-7279-4b26-a71d-82e633e4a0ef" alt="Stair start points" />
+      </div>
+
+      <ion-card *ngIf="stair._riseNum > 1">
+        <ion-card-header style="padding-bottom: 0px;">
+          <ion-card-title color="success">Start Points</ion-card-title>
+        </ion-card-header>
+                
+        <ion-list>
+          <ion-item *ngFor="let s of stair?._startPointsA; let i = index" [style.background-color]="i % 2 ? '#EBEBEB' : 'white'">
+            P {{i + 1}}: <strong style="margin-left: 1em;">{{s}}</strong>
+          </ion-item>
+        </ion-list>
+            
+      </ion-card>
+
+    </div>
+
+    <div *ngSwitchCase="'pageThree'">
+
+      <div class="imgBox"> 
+        <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fa3-min.PNG?alt=media&token=dbb3d578-2254-4581-b87a-cdd3dd203eeb" alt="Stringer start points" />
+      </div>
+      <ion-card *ngIf="stair._riseNum > 1">
+        <ion-card-header style="padding-bottom: 0px;">
+          <ion-card-title color="success">Start Points</ion-card-title>
+        </ion-card-header>
+                  
+        <ion-list>
+          <ion-item *ngFor="let s of stair?._startPointsB; let i = index" [style.background-color]="i % 2 ? '#EBEBEB' : 'white'">
+            P {{i + 1}}: <strong style="margin-left: 1em;">{{s}}</strong>
+          </ion-item>
+        </ion-list>
+              
+      </ion-card>
+
+    </div>
+
+  </div>
+    
+</ion-content>
+    
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-segment [(ngModel)]="stairSegment">
+      <ion-segment-button value="pageOne">Data</ion-segment-button>
+      <ion-segment-button value="pageTwo">Result A</ion-segment-button>
+      <ion-segment-button value="pageThree">Result B</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
+

@@ -1,0 +1,308 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/stairs']">
+        <ion-icon slot="start" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="activeStair">{{activeStair?._name}}</ion-title>
+    <ion-title *ngIf="!activeStair">Stepness of Stairs - Rise & Going</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="outline" color="light" (click)="newStair()">Add Stair</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content padding>
+    <div [ngSwitch]="stairSegment"> 
+
+        <div *ngSwitchCase="'calc'">
+    
+          <p style="text-align: center;" *ngIf="btnShowDwg">
+            <ion-chip (click)="stairDWG = true; btnShowDwg = false;">
+              <ion-avatar>
+                <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fb2-min.PNG?alt=media&token=63a12cb2-4d45-4229-b5d1-561c49df6598" alt="steepness of stairs - rise and going"/>
+              </ion-avatar>
+              <ion-label>Show Drawing</ion-label>
+            </ion-chip>
+          </p>
+    
+          <div class="imgBox" *ngIf="stairDWG"> 
+            <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG = false; btnShowDwg = true;">
+              <ion-fab-button  size="small" translucent color="danger">
+                <ion-icon name="close"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fb2-min.PNG?alt=media&token=63a12cb2-4d45-4229-b5d1-561c49df6598" alt="steepness of stairs - rise and going" />
+          </div>
+    
+          <ion-grid>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium"><ion-label text-right>Stair Rise: </ion-label></ion-text></div>
+              </ion-col>
+              <ion-col size="5">
+                <div text-left><ion-input [(ngModel)]="stair._stairRise" type="number" (keyup)="calculateStairData()" autofocus 
+                  clear-input max="10000" #num (ionChange)="calculateStairData1(num.value)"
+                ></ion-input></div>
+              </ion-col>
+            </ion-row>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium"><ion-label text-right>Stair Going: </ion-label></ion-text></div>
+              </ion-col>
+              <ion-col size="5">
+                <div text-left><ion-input [(ngModel)]="stair._stairGoing" type="number" (keyup)="calculateStairData()"
+                  clear-input max="10000" #num1 (ionChange)="calculateStairData2(num1.value)"
+                ></ion-input></div>
+              </ion-col>
+            </ion-row>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium"><ion-label text-right>Risers Number: </ion-label></ion-text></div>
+              </ion-col>
+              <ion-col size="5">
+                <div text-left><ion-input [(ngModel)]="stair._stepNumber" type="number" (keyup)="calculateStairData()"
+                  clear-input max="1000" #num2 (ionChange)="calculateStairData3(num2.value)"
+                ></ion-input></div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+          <ion-grid>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium">Step Going:</ion-text></div>
+              </ion-col>
+              <ion-col size="4">
+                <div text-left class="result" [style.color]="errorGoing ? 'red' : 'black'">{{stair._stepGoing}}</div>
+              </ion-col>
+              <ion-col size="3" *ngIf="activeStair">
+                  <ion-text color="medium">({{activeStair?.goingMin}}-{{activeStair?.goingMax}})</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium">Step Rise:</ion-text></div>
+              </ion-col>
+              <ion-col size="4">
+                <div text-left class="result" [style.color]="errorRise ? 'red' : 'black'">{{stair._stepRise}}</div>
+              </ion-col>
+              <ion-col size="3" *ngIf="activeStair">
+                  <ion-text color="medium">({{activeStair?.riseMin}}-{{activeStair?.riseMax}})</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row justify-content-start align-items-center>
+                <ion-col size="5">
+                  <div text-right><ion-text color="medium">Pitch:</ion-text></div>
+                </ion-col>
+                <ion-col size="4">
+                  <div text-left class="result" [style.color]="errorPitch ? 'red' : 'black'">{{stair._pitch}}</div>
+                </ion-col>
+                <ion-col size="3" *ngIf="activeStair">
+                  <ion-text color="medium">(&lt;{{activeStair?._pitchMax}}&deg;)</ion-text>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+    
+        </div>
+    
+        <div *ngSwitchCase="'obstacle'">
+    
+          <p style="text-align: center;" *ngIf="btnShowDwg2">
+            <ion-chip (click)="stairDWG2 = true; btnShowDwg2 = false;">
+              <ion-avatar>
+                <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fo2-min.PNG?alt=media&token=c46dfd8a-c6d8-4383-a28c-bf6ee0f7be44" alt="stair obstacle" />
+              </ion-avatar>
+              <ion-label>Show Drawing</ion-label>
+            </ion-chip>
+          </p>
+        
+          <div class="imgBox" *ngIf="stairDWG2"> 
+            <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG2 = false; btnShowDwg2 = true;">
+              <ion-fab-button  size="small" translucent color="danger">
+                <ion-icon name="close"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fo2-min.PNG?alt=media&token=c46dfd8a-c6d8-4383-a28c-bf6ee0f7be44" alt="stair obstacle" />
+          </div>
+    
+          <ion-grid>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium"><ion-label text-right>A: </ion-label></ion-text></div>
+              </ion-col>
+              <ion-col size="5">
+                <div text-left><ion-input [(ngModel)]="stair._A" type="number" (keyup)="calculateStairData()" autofocus 
+                  clear-input max="10000" #num31 (ionChange)="calculateStairData4(num31.value)"
+                ></ion-input></div>
+              </ion-col>
+            </ion-row>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium"><ion-label text-right>B: </ion-label></ion-text></div>
+              </ion-col>
+              <ion-col size="5">
+                <div text-left><ion-input [(ngModel)]="stair._B" type="number" (keyup)="calculateStairData()" autofocus 
+                  clear-input max="10000" #num41 (ionChange)="calculateStairData5(num41.value)"
+                ></ion-input></div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+    
+          <ion-grid>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium">Step Going:</ion-text></div>
+              </ion-col>
+              <ion-col size="4">
+                <div text-left class="result" [style.color]="errorGoing ? 'red' : 'black'">{{stair._stepGoing}}</div>
+              </ion-col>
+              <ion-col size="3" *ngIf="activeStair">
+                <ion-text color="medium">({{activeStair?.goingMin}}-{{activeStair?.goingMax}})</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium">Step Number:</ion-text></div>
+              </ion-col>
+              <ion-col size="4">
+                <div text-left class="result">{{stair._obstacleStepNum}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row justify-content-start align-items-center>
+              <ion-col size="5">
+                <div text-right><ion-text color="medium">Gap:</ion-text></div>
+              </ion-col>
+              <ion-col size="4">
+                <div text-left class="result" [style.color]="errorGap ? 'red' : 'black'" *ngIf="stair._A > 0">{{stair._gap}}</div>
+              </ion-col>
+              <ion-col size="3" *ngIf="activeStair">
+                <ion-text color="medium">(&gt;{{activeStair?._obstacleGap}})</ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+        </div>
+        
+        <div *ngSwitchCase="'desc'">
+    
+          <p style="text-align: center;" *ngIf="btnShowDwg3">
+            <ion-chip (click)="stairDWG3 = true; btnShowDwg3 = false;">
+              <ion-avatar>
+                <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fb2-min.PNG?alt=media&token=63a12cb2-4d45-4229-b5d1-561c49df6598" alt="steepness of stairs - rise and going" />
+              </ion-avatar>
+              <ion-label>Show Drawing</ion-label>
+            </ion-chip>
+          </p>
+            
+          <div class="imgBox" *ngIf="stairDWG3"> 
+            <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="stairDWG3 = false; btnShowDwg3 = true;">
+              <ion-fab-button  size="small" translucent color="danger">
+                <ion-icon name="close"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+            <img src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairBig%2Fb2-min.PNG?alt=media&token=63a12cb2-4d45-4229-b5d1-561c49df6598" alt="steepness of stairs - rise and going" />
+          </div>
+    
+         
+          <ion-grid *ngFor="let data of stairList" class="table">
+            <ion-row>
+              <ion-col size="8" [class.selected]="data === activeStair">
+                <div text-center><ion-text color="dark"><h4>{{data?._name}}</h4></ion-text></div>
+              </ion-col>
+              <ion-col size="4" *ngIf="!data?._active">
+                <ion-button  color="medium" fill="outline" (click)="makeActive(data)" size="small">Activate</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <div text-center><ion-text text-nowrap color="medium">Rise</ion-text></div>
+              </ion-col>
+              <ion-col size="6">
+                <div text-center><ion-text text-nowrap color="medium">Going</ion-text></div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="3">
+                <div text-center><ion-text text-nowrap color="medium">minimum</ion-text></div>
+              </ion-col>
+              <ion-col size="3">
+                <div text-center><ion-text text-nowrap color="medium">maximum</ion-text></div>
+              </ion-col>
+              <ion-col size="3">
+                <div text-center><ion-text text-nowrap color="medium">minimum</ion-text></div>
+              </ion-col>
+              <ion-col size="3">
+                <div text-center><ion-text text-nowrap color="medium">maximum</ion-text></div>
+              </ion-col>
+            </ion-row>
+            <ion-row align-items-center>
+              <ion-col size="3">
+                <div text-center><ion-text>{{data?.riseMin}}</ion-text></div>
+              </ion-col>
+              <ion-col size="3">
+                <div text-center><ion-text>{{data?.riseMax}}</ion-text></div>
+              </ion-col>
+              <ion-col size="3">
+                <div text-center><ion-text>{{data?.goingMin}}</ion-text></div>
+              </ion-col>
+              <ion-col size="3">
+                <div text-center><ion-text>{{data?.goingMax}}</ion-text></div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+    
+          <ion-card>
+            <ion-card-content>
+              <p><ion-text color="success">Private:</ion-text> Intended to be used only one dwelling.</p>
+              <p><ion-text color="success">Institutional and assembly:</ion-text> Serving place where many people gather</p>
+              <p><ion-text color="success">Utility:</ion-text> Used for escape, access for maintenance, or purpose other than 
+              usual route for moving between levels on day-to-day basic.</p>
+              <p><ion-text color="success">Easy access:</ion-text> Used by a broad range of users, and on a day-to day-basic, as the usual route between levels.</p>
+              <ul>
+                <li>The maximum pitch for a private stair is 42&deg;</li>
+                <li>For school buildings, the minimum going is 280mm.</li>
+              </ul>
+              <p>The normal relations between the dimensions of the rise and going is: twice the rise plus the going(2R + G) 
+                equals between 550mm and 700mm.
+              </p>
+            </ion-card-content>
+          </ion-card>
+            
+          
+          <ion-card *ngIf="activeStair">
+            <ion-card-header style="padding-bottom: 0px;">
+              <ion-card-title color="success">{{activeStair._name}}</ion-card-title>
+              <ion-card-subtitle>The following rules must be met:</ion-card-subtitle>
+            </ion-card-header>
+            
+            <ion-card-content style="padding-top: 0px;">
+              <ul>
+                <li>The individual rise must be between
+                    <ion-text color="success">{{activeStair?.riseMin}}mm</ion-text> and <ion-text color="success">{{activeStair?.riseMax}}mm</ion-text></li>
+                <li>The individual going must be between <ion-text color="success">{{activeStair?.goingMin}}mm</ion-text> and <ion-text color="success">{{activeStair?.goingMax}}mm</ion-text></li>
+                <li>The maximum pitch for a stair is <ion-text color="success">{{activeStair?._pitchMax}}&deg;</ion-text></li>
+                <li>Minimum gap between stair and door is <ion-text color="success">{{activeStair?._obstacleGap}}mm</ion-text></li>
+              </ul>
+              <p style="text-align: center" *ngIf="!activeStair._private">
+                <ion-button color="danger" (click)="deleteStair()">Delete</ion-button>
+              </p>
+            </ion-card-content>
+          </ion-card>
+    
+        </div>
+        
+      </div>
+    
+    </ion-content>
+    
+    <ion-footer>
+      <ion-toolbar color="primary">
+        <ion-segment [(ngModel)]="stairSegment">
+          <ion-segment-button value="calc">Calculate</ion-segment-button>
+          <ion-segment-button value="obstacle">Obstacle</ion-segment-button>
+          <ion-segment-button value="desc">Description</ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+    </ion-footer>
