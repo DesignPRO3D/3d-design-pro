@@ -23,7 +23,7 @@ const routes: Routes = [
 			)
 	},
 	{
-		path: 'web-progressive-app',
+		path: 'instagram-facebook',
 		loadChildren: () =>
 			import('./it/page-validation/page-validation.module').then(
 				m => m.PageValidationPageModule

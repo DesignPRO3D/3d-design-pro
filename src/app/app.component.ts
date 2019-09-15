@@ -32,8 +32,8 @@ export class AppComponent {
 			icon: 'beer'
 		},
 		{
-			title: 'Web Page Validation',
-			url: '/web-progressive-app',
+			title: 'Instagram & Facebook Business',
+			url: '/instagram-facebook',
 			icon: 'globe'
 		},
 		{

@@ -9,192 +9,229 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-	<h2>
-		1. Stair Calculator & Stair Regulations
-	</h2>
+<ion-content no-padding>
+	<ion-grid fixed no-padding>
+		<ion-row no-padding>
+			<ion-col size-sm="12" size-md="8" offset-md="2" no-padding>
+				<div [ngSwitch]="pageSegment">
+					<div *ngSwitchCase="'pageOne'">
+						<ion-list no-padding>
+							<ion-item routerLink="/stairs">
+								<ion-thumbnail slot="start">
+									<img
+										src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FstairSmall%2F13-min.png?alt=media&token=b1a08ba7-e73b-457c-bc5a-45db6885cc0a"
+										alt="Spiral Stair Calculator"
+									/>
+								</ion-thumbnail>
+								<ion-label>
+									<h2>Stair Calculator</h2>
+									<p>
+										Calculations and regulations for stepness of stairs,
+										headroom. Kite winders stairs. Special stairs with tappered
+										treads. Spiral stairs and special stair calculations.
+									</p>
+								</ion-label>
+								<ion-icon item-end name="arrow-forward"></ion-icon>
+							</ion-item>
 
-	<h3 class="text-center">Steepness of stairs – rise and going</h3>
-	<p>
-		We have stair rise, stair going and risers number. Calculator calculate
-		tread going, tread rise, stair pitch and compare data to UK stair
-		regulations. We can also calculate gap between stair and obstacle. Is
-		possible to add new stair data for our own purpose.
-	</p>
+							<ion-item routerLink="/railings">
+								<ion-thumbnail slot="start">
+									<img
+										src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stair-calculator%2Fbalustrade-small%2F5s-min.png?alt=media&token=4fd476ed-9f0a-4d19-a954-dbb2c9370625"
+										alt="Railings long run with more panels"
+									/>
+								</ion-thumbnail>
+								<ion-label>
+									<h2>Balustrade & Railings</h2>
+									<p>
+										Ten calculations, from simple panel to stair balustrades.
+									</p>
+								</ion-label>
+								<ion-icon item-end name="arrow-forward"></ion-icon>
+							</ion-item>
 
-	<h3 class="text-center">
-		Special stairs – tapered treads - width less than 1m
-	</h3>
-	<p>
-		We have stair inside radius, outside radius, angle and tread number.
-		Calculator calculate going at centre of the tread, tread angle, stair width,
-		tread inside and outside width.
-	</p>
+							<ion-item routerLink="/extra">
+								<ion-thumbnail slot="start">
+									<img
+										src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/stairCalculator%2FextraSmall%2Ff2-min.png?alt=media&token=65dae49f-928e-416a-a96d-d5d6486a4063"
+										alt="Calculator Metal gates with vertical infill bars"
+									/>
+								</ion-thumbnail>
+								<ion-label>
+									<h2>Gate & Glass Balustrade Calculator</h2>
+									<p>
+										Three calculations for glass balustrade, metal gate
+										calculator and Trigonometry.
+									</p>
+								</ion-label>
+								<ion-icon item-end name="arrow-forward"></ion-icon>
+							</ion-item>
+						</ion-list>
+						<ion-img
+							src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F3dpwa.png?alt=media&token=7ca471a3-f6a3-4f5c-b722-1f9319ec7efc"
+						></ion-img>
+					</div>
 
-	<h3 class="text-center">
-		Spiral Stairs
-	</h3>
-	<p>
-		We have balustrade rail diameter, rail radius, stair angle, tread rise,
-		tread number. Calculator calculate balustrade rail bending radius and
-		length. Balustrade circumference and angle.
-	</p>
-	<p class="text-center">
-		<ion-button color="medium" [routerLink]="['/stairs']"
-			>Go to Stairs Calculator</ion-button
-		>
-	</p>
+					<div *ngSwitchCase="'pageTwo'">
+						<ion-card>
+							<ion-card-header>
+								<ion-card-title>3D & 2D Cad Design</ion-card-title>
+							</ion-card-header>
+							<ion-card-content no-padding>
+								<ion-img
+									src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F3dprint.png?alt=media&token=54ddc594-ab93-4c7e-b784-277161881c2a"
+									alt="3D Printer"
+								></ion-img>
+								<ion-text color="dark">
+									<p>
+										With new technology is possible to upload 3D model direct to
+										web page.
+									</p>
+								</ion-text>
+								<div text-center padding>
+									<ion-button
+										fill="outline"
+										href="https://evestarfootballclub.com/"
+										>View 3D Model
+										<ion-icon slot="end" name="arrow-forward"></ion-icon>
+									</ion-button>
+								</div>
+							</ion-card-content>
+						</ion-card>
+					</div>
 
-	<h2>
-		2. Balustrade & Railings Calculator
-	</h2>
+					<div *ngSwitchCase="'pageThree'">
+						<ion-text color="success" text-center>
+							<h1>Fast, beautiful apps</h1>
+						</ion-text>
 
-	<h3 class="text-center">Standard vertical bar railing panel</h3>
-	<p>
-		We have panel length, vertical bar diameter and numbers. Calculator
-		calculate gap between vertical bars and start points for vertical bars.
-	</p>
+						<ion-text color="tertiary">
+							<h2>Ionic Framework</h2>
+						</ion-text>
+						<p>
+							is the free, open source mobile UI toolkit for developing
+							high-quality cross-platform apps for native iOS, Android, and the
+							web—all from a single codebase.
+						</p>
 
-	<h3 class="text-center">Standard railing section</h3>
-	<p>
-		We have section length, vertical bar diameter and numbers, post diameter and
-		panels number. Calculator calculate post number, panels number. Gap between
-		vertical bars and start points for vertical bars.
-	</p>
+						<ion-text color="tertiary">
+							<h2>Angular: One framework. Mobile & desktop.</h2>
+						</ion-text>
+						<p>
+							From prototype through global deployment, Angular delivers the
+							productivity and scalable infrastructure that supports Google's
+							largest applications.
+						</p>
 
-	<h3 class="text-center">
-		Balustrade - vertical spindles fixed on each tread
-	</h3>
-	<p>
-		We have tread going, gap between spindle and tread, spindle diameter and
-		numbers. Calculator calculate gap between spindles and start points for
-		spindles.
-	</p>
+						<ion-text color="tertiary">
+							<h2>Firebase: Backed by Google, trusted by top apps</h2>
+						</ion-text>
+						<p>
+							Google's mobile platform that helps you quickly develop
+							high-quality apps and grow your business.
+						</p>
 
-	<p class="text-center">
-		<ion-button color="medium" [routerLink]="['/railings']"
-			>Go to balustrade calculator</ion-button
-		>
-	</p>
+						<ion-text color="success" text-center>
+							<h1>Progressive Web Apps</h1>
+						</ion-text>
+						<ion-item no-padding>
+							<ion-label class="ion-text-wrap">
+								<ion-text color="primary">
+									<h3>Reliable</h3>
+								</ion-text>
+								<ion-text color="dark">
+									<p>
+										Load instantly and never show the downasaur, even in
+										uncertain network conditions.
+									</p>
+								</ion-text>
+							</ion-label>
+						</ion-item>
+						<ion-item no-padding>
+							<ion-label class="ion-text-wrap">
+								<ion-text color="primary">
+									<h3>Fast</h3>
+								</ion-text>
+								<ion-text color="dark">
+									<p>
+										Respond quickly to user interactions with silky smooth
+										animations and no janky scrolling.
+									</p>
+								</ion-text>
+							</ion-label>
+						</ion-item>
 
-	<h2>
-		3. Glass Balustrade, metal gates & trigonometry calculator
-	</h2>
+						<ion-item no-padding>
+							<ion-label class="ion-text-wrap">
+								<ion-text color="primary">
+									<h3>Engaging</h3>
+								</ion-text>
+								<ion-text color="dark">
+									<p>
+										Feel like a natural app on the device, with an immersive
+										user experience.
+									</p>
+								</ion-text>
+							</ion-label>
+						</ion-item>
+					</div>
 
-	<h3 class="text-center">Metal gates with vertical bars</h3>
-	<p>
-		We have gates width, post diameter, vertical bar diameter and numbers, gap
-		between gates and middle style diameter. Calculate width of gate frame, gap
-		between vertical bars and start points for vertical bars with option dog
-		bars.
-	</p>
-
-	<h3 class="text-center">Glass balustrade professional</h3>
-	<p>
-		We have balustrade section center between start and end post. Handrail and
-		posts diameter. Gap between glass top, bottom, left and right. Balustrade
-		height and panels number. Calculate glass height and width. Posts number and
-		start points for postts.
-	</p>
-
-	<h3 class="text-center">Right-Angled Triangle</h3>
-	<p>
-		Calculate area of triangle. Length between points A, B, C and angle.
-	</p>
-
-	<p class="text-center">
-		<ion-button color="medium" [routerLink]="['/extra']"
-			>Go to extra calculator</ion-button
-		>
-	</p>
-
-	<ion-slides pager="true" class="main-slider" [options]="slideOpts">
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F1-min.png?alt=media&token=cb036c09-9515-466e-9424-03ef0c2d2e57"
-				alt="Oval Stairs with steel balustrade. Balusters glued into treads. Expensive wooden steps and handrail."
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F10-min.png?alt=media&token=c110e5d1-be4e-4d1d-937f-1b8b07d25502"
-				alt="Spiral stairs for Poole in UK"
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F9-min.png?alt=media&token=3fa4632e-9db4-486b-b184-e63d8f9525d5"
-				alt="Metal corner stairs with glass balustrade"
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F8-min.png?alt=media&token=c91e7580-e8dc-42a8-9fe1-af2a7cc87cab"
-				alt="Helical metal stairs and balustrade with hoops and verical bars"
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F7-min.png?alt=media&token=7a458b3c-e586-4c6a-9969-9a1de5fdab7c"
-				alt="Helical metal stairs and glass balustrade"
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F6-min.png?alt=media&token=f406069a-1a04-45d7-9ed9-4fe528f3a988"
-				alt="Main Wooden Gates for expensive house market"
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F5-min.png?alt=media&token=99487426-e790-48ad-ab9d-d06e67ec8e45"
-				alt="Corner metal stairs with art balustrade. Challenge to design in SolidWorks"
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F4-min.png?alt=media&token=25b41d66-69ee-4abd-8052-a019e9f7df3c"
-				alt="Glass railings"
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F3-min.png?alt=media&token=c545a96c-c8ef-403a-9b54-7bd7c8b0c314"
-				alt="Main gates with panels cutted on waterjet cnc machine"
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F2-min.png?alt=media&token=7bc0bf1a-d775-4a5c-882a-19ea6b97fb57"
-				alt="Stair balustrade with balusters fixed to treads"
-			/>
-		</ion-slide>
-
-		<ion-slide>
-			<img
-				class="slide-img"
-				src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2F11-min.png?alt=media&token=db1c1bf3-19a8-4c65-985a-447c8952a56d"
-				alt="Stairs and balustrade cutted on waterjet cnc machine"
-			/>
-		</ion-slide>
-	</ion-slides>
+					<div *ngSwitchCase="'pageFour'">
+						<ion-card>
+							<ion-card-header>
+								<ion-card-subtitle
+									>Vision: A world of confidence boys and
+									girls</ion-card-subtitle
+								>
+								<ion-card-title>Evestar Football Club</ion-card-title>
+							</ion-card-header>
+							<ion-card-content no-padding>
+								<ion-img
+									src="https://firebasestorage.googleapis.com/v0/b/solidworks-app.appspot.com/o/HomePhotos%2FB-min.jpg?alt=media&token=6e0a18c1-5763-4e6b-80d0-2afb2f53167f"
+									alt="Eve Star charity in Kenya"
+								></ion-img>
+								<ion-text color="dark">
+									<p>
+										Evestar Football Club – Kenya was established in 2007 and
+										registered as a self-help group in April 2011 and is active
+										in informal parts of Nairobi and Kakamega. The Club focuses
+										on soccer training, scouting and supporting local talent as
+										a way of molding the youth to better themselves, their
+										families and the community at large.
+									</p>
+								</ion-text>
+								<div text-center padding>
+									<ion-button
+										fill="outline"
+										href="https://evestarfootballclub.com/"
+										>GO TO WEB PAGE
+										<ion-icon slot="end" name="arrow-forward"></ion-icon>
+									</ion-button>
+								</div>
+							</ion-card-content>
+						</ion-card>
+					</div>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>
+
+<ion-footer>
+	<ion-toolbar color="primary">
+		<ion-segment [(ngModel)]="pageSegment">
+			<ion-segment-button value="pageOne">
+				<ion-icon name="calculator"></ion-icon>
+			</ion-segment-button>
+			<ion-segment-button value="pageTwo">
+				<ion-icon name="logo-designernews"></ion-icon>
+			</ion-segment-button>
+			<ion-segment-button value="pageThree">
+				<ion-icon name="globe"></ion-icon>
+			</ion-segment-button>
+			<ion-segment-button value="pageFour">
+				<ion-icon name="football"></ion-icon>
+			</ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+</ion-footer>

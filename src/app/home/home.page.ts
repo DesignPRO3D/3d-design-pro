@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { WpaComponent } from '../components/wpa/wpa.component';
 
@@ -7,13 +7,16 @@ import { WpaComponent } from '../components/wpa/wpa.component';
 	templateUrl: 'home.page.html',
 	styleUrls: ['home.page.scss']
 })
-export class HomePage {
+export class HomePage implements OnInit {
+	pageSegment: string = 'pageOne';
 	showPopover: boolean = true;
 	slideOpts = {
 		initialSlide: 1,
 		speed: 400
 	};
 	constructor(public popoverController: PopoverController) {}
+
+	ngOnInit() {}
 
 	ionViewDidEnter() {
 		setTimeout(() => {
@@ -22,10 +25,10 @@ export class HomePage {
 	}
 
 	async presentPopover() {
-		const popover = await this.popoverController.create({
-			component: WpaComponent,
-			translucent: true
-		});
-		return await popover.present();
+		// const popover = await this.popoverController.create({
+		// 	component: WpaComponent,
+		// 	translucent: true
+		// });
+		// return await popover.present();
 	}
 }
