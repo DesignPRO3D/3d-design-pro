@@ -55,4 +55,8 @@ export class AppComponent {
 			// this.splashScreen.hide();
 		});
 	}
+
+	mailTo() {
+		window.location.href = 'mailto:designpro3d@outlook.com';
+	}
 }
